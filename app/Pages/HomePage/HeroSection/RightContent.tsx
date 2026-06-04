@@ -22,7 +22,7 @@ export default function RightContent() {
             repeat: Infinity,
             ease: "easeInOut",
           },
-        }}shadow-[0_40px_80px_rgba(74,46,18,0.2),_inset_0_1px_0_rgba(255,255,255,0.6)]
+        }}
         whileHover={{
           scale: 1.05,
           rotate: 2,
