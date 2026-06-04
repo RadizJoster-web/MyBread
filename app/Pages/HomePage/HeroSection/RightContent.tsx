@@ -22,14 +22,14 @@ export default function RightContent() {
             repeat: Infinity,
             ease: "easeInOut",
           },
-        }}
+        }}shadow-[0_40px_80px_rgba(74,46,18,0.2),_inset_0_1px_0_rgba(255,255,255,0.6)]
         whileHover={{
           scale: 1.05,
           rotate: 2,
           transition: { duration: 0.3 },
         }}
         whileTap={{ scale: 0.98 }}
-        className="relative w-80 h-[380px] bg-gradient-to-br from-[#F0E6CE] to-[#F5EDD8] rounded-[32px] border border-white/80 flex items-center justify-center text-[9rem] shadow-primary/40 shadow-xl cursor-grab active:cursor-grabbing"
+        className="relative w-80 h-[380px] bg-gradient-to-br from-[#F0E6CE] to-[#F5EDD8] rounded-[32px] border border-white/80 flex items-center justify-center text-[9rem] cursor-grab active:cursor-grabbing shadow-[0_40px_80px_rgba(74,46,18,0.2),_inset_0_1px_0_rgba(255,255,255,0.6)]"
       >
         <motion.span
           animate={{ rotate: [-3, 3, -3] }}

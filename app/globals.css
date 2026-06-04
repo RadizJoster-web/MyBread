@@ -6,6 +6,9 @@
   --dark-chocolate: #4a3525;
   --muted-cocoa: #7a6a53;
 
+  --cream: #fdf8f0;
+  --warm-white: #fefcf8;
+  --cream-dark: #f5edd8;
   --warm-gradient:
     radial-gradient(
       ellipse 80% 60% at 70% 50%,
@@ -17,7 +20,12 @@
       rgba(107, 66, 38, 0.08) 0%,
       transparent 60%
     ),
-    linear-gradient(170deg, #fdfbf7 0%, #f5f2eb 40%, #e8e2d5 100);
+    linear-gradient(
+      170deg,
+      var(--cream) 0%,
+      var(--warm-white) 40%,
+      var(--cream-dark) 100%
+    );
 }
 
 @theme inline {
@@ -34,4 +42,9 @@
 
 * {
   box-sizing: border-box;
+}
+
+#hero {
+  inset: 0;
+  background: var(--warm-gradient);
 }
