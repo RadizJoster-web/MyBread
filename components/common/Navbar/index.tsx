@@ -130,7 +130,7 @@ export default function Navbar() {
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-1 bg-muted-cocoa text-background py-2 px-6 rounded-xl font-medium hover:bg-dark-chocolate transition-all duration-300 cursor-pointer"
+          className="flex items-center gap-1 bg-muted-cocoa text-light py-2 px-6 rounded-full font-medium hover:bg-dark-chocolate transition-all duration-300 cursor-pointer"
         >
           Order Now
         </motion.button>

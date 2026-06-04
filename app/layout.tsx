@@ -40,7 +40,7 @@ export default function RootLayout({
       lang="en"
       className={`${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="bg-background text-muted-cocoa h-full font-inter">
+      <body className="bg-light text-muted-cocoa h-full font-inter">
         <Navbar />
         {children}
       </body>
