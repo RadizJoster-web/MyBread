@@ -2,21 +2,23 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import ProfileWidget from "./ProfileWedget";
+import { motion, AnimatePresence } from "framer-motion";
+import useCart from "@/hooks/useCart";
 
-import { MdPerson } from "react-icons/md";
-import { BsList, BsX } from "react-icons/bs"; 
+import Cart from "@/components/ui/Cart";
+import { BsList, BsX } from "react-icons/bs";
 
 const pagesList = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Shop", href: "/shop" },
-  { label: "Categories", href: "/categories" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const { cartOpen, setCartOpen, cartItems } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedPage, setSelectedPage] = useState("Home");
 
   const headerRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +26,6 @@ export default function Navbar() {
     const handleScroll = () => {
       if (!headerRef.current) return;
 
-      // Saat di-scroll ke bawah lebih dari 50px
       if (window.scrollY > 50) {
         headerRef.current.classList.add(
           "bg-white/90",
@@ -35,7 +36,6 @@ export default function Navbar() {
         );
         headerRef.current.classList.remove("bg-transparent");
       } else {
-        // Kembali ke kondisi transparan di atas hero image saat di posisi paling atas
         headerRef.current.classList.add("bg-transparent");
         headerRef.current.classList.remove(
           "bg-white/90",
@@ -56,76 +56,119 @@ export default function Navbar() {
   return (
     <nav
       ref={headerRef}
-      // Memastikan transisi warna background halus saat di-scroll
-      className="fixed top-0 left-0 z-50 w-full h-20 flex items-center justify-between px-6 lg:px-16 transition-all duration-300 bg-transparent"
+      className="fixed top-0 left-0 z-50 w-full h-20 flex items-center justify-between px-6 md:px-16 xl:px-80 transition-all duration-300 bg-transparent"
     >
-      {/* AREA KIRI: LOGO & MOBILE BUTTON */}
-      <div className="flex items-center gap-4">
-        <button
-          className="lg:hidden w-10 h-10 rounded-xl bg-transparent hover:bg-bakeryPrimary/20 duration-200 flex items-center justify-center cursor-pointer text-bakeryText"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {/* Ikon berubah jadi silang jika menu mobile terbuka */}
-          {mobileMenuOpen ? (
-            <BsX className="text-2xl" />
-          ) : (
-            <BsList className="text-2xl" />
-          )}
-        </button>
-
-        <Link
-          href="/"
-          className="font-brand text-2xl lg:text-3xl font-bold text-bakeryText cursor-pointer tracking-wide"
-        >
-          My Bread
-        </Link>
-      </div>
+      <Link
+        href="/"
+        className="font-playfair text-2xl lg:text-3xl font-bold text-bakeryText cursor-pointer tracking-wide"
+      >
+        My Bread
+      </Link>
 
       {/* DROPDOWN MENU MOBILE */}
-      {mobileMenuOpen && (
-        <ul className="absolute top-20 left-0 w-full bg-white border-t border-[#EFEAE2] shadow-lg lg:hidden flex flex-col py-2 z-40 animate-in fade-in slide-in-from-top-2 duration-200">
-          {pagesList.map((page) => (
-            <li key={page.href}>
-              <Link
-                href={page.href}
-                onClick={() => setMobileMenuOpen(false)} // Tutup otomatis jika link diklik
-                className="block py-3 px-6 text-bakeryText hover:bg-bakeryBg hover:text-bakeryPrimary font-sans font-medium transition-colors"
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.ul
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="absolute top-20 left-0 w-full bg-white border-t border-[#EFEAE2] shadow-lg lg:hidden flex flex-col py-2 z-40"
+          >
+            {pagesList.map((page, index) => (
+              <motion.li
+                key={page.href}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.04, duration: 0.2 }}
               >
-                {page.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+                <Link
+                  href={page.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-3 px-6 text-bakeryText hover:bg-bakeryBg hover:text-primary font-sans font-medium transition-colors"
+                >
+                  {page.label}
+                </Link>
+              </motion.li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
 
       {/* AREA TENGAH: DESKTOP NAVIGATION MENU */}
-      <ul className="space-x-8 hidden lg:flex items-center">
+      <ul className="hidden lg:flex items-center gap-1">
         {pagesList.map((page) => (
-          <li key={page.href} className="group relative py-2">
+          <li key={page.href} className="group relative">
             <Link
               href={page.href}
-              className="font-sans font-medium text-bakeryBody hover:text-bakeryText transition-colors duration-200"
+              onClick={() => setSelectedPage(page.label)}
+              className="font-inter text-sm font-medium py-2 px-6"
             >
               {page.label}
             </Link>
-            {/* Animasi underline estetik */}
-            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-bakeryPrimary transition-all duration-300 group-hover:w-full"></span>
+
+            {/* Animasi layoutId framer-motion untuk perpindahan indicator yang smooth */}
+            {selectedPage === page.label && (
+              <motion.span
+                layoutId="activeUnderline"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-primary w-7/10"
+              />
+            )}
+
+            {/* Fallback hover style jika link tidak di-select */}
+            {selectedPage !== page.label && (
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-7/10"></span>
+            )}
           </li>
         ))}
       </ul>
 
       {/* AREA KANAN: TOMBOL PROFILE + WIDGET DROPDOWN */}
-      <div className="relative">
-        <button
-          onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-          className="w-10 h-10 rounded-full bg-transparent hover:bg-bakeryPrimary/20 duration-200 flex items-center justify-center cursor-pointer text-bakeryText"
+      <div className="flex items-center gap-4">
+        {/* TOMBOL ORDER NOW */}
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="flex items-center gap-1 bg-muted-cocoa text-background py-2 px-6 rounded-xl font-medium hover:bg-dark-chocolate transition-all duration-300 cursor-pointer"
         >
-          <MdPerson className="text-2xl" />
+          Order Now
+        </motion.button>
+
+        {/* TOMBOL PROFILE */}
+        <button
+          className="w-10 h-10 rounded-xl bg-primary/20 hover:bg-muted-cocoa flex items-center justify-center cursor-pointer text-bakeryText hover:scale-105 active:scale-95 transition-all duration-300"
+          onClick={() => setCartOpen(!cartOpen)}
+        >
+          🛒
         </button>
 
-        {/* Meneruskan fungsi onClose agar dropdown bisa menutup dirinya sendiri */}
-        {profileMenuOpen && <ProfileWidget />}
+        {/* MOBILE MENU BUTTON */}
+        <button
+          className="lg:hidden w-10 h-10 rounded-xl bg-transparent hover:bg-primary/20 duration-200 flex items-center justify-center cursor-pointer text-bakeryText"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {/* Pembungkus ikon untuk transisi perubahan wujud yang smooth */}
+          <motion.div
+            key={mobileMenuOpen ? "close" : "menu"}
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            transition={{ duration: 0.15 }}
+          >
+            {mobileMenuOpen ? (
+              <BsX className="text-2xl" />
+            ) : (
+              <BsList className="text-2xl" />
+            )}
+          </motion.div>
+        </button>
       </div>
+
+      <Cart
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+      />
     </nav>
   );
 }
