@@ -33,11 +33,12 @@
   --color-primary: var(--primary);
   --color-dark-chocolate: var(--dark-chocolate);
   --color-muted-cocoa: var(--muted-cocoa);
+  --color-cream-dark: var(--cream-dark);
+
+  --warm-gradient: var(--warm-gradient);
 
   --font-playfair: var(--font-playfair-display);
   --font-inter: var(--font-inter);
-
-  --warm-gradient: var(--warm-gradient);
 }
 
 * {
