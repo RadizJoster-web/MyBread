@@ -1,6 +1,7 @@
 import HeroSection from "./HeroSection";
 import OrderedPlatformSection from "./OrderedPlatformSection";
 import CategoryMenuSection from "./CategoryMenuSection";
+import PopularMenuSection from "./PopilarMenuSections";
 
 export default function HomePage() {
   return (
@@ -8,6 +9,7 @@ export default function HomePage() {
       <HeroSection />
       <OrderedPlatformSection />
       <CategoryMenuSection />
+      <PopularMenuSection />
 
       <div className="w-full h-96"></div>
     </main>

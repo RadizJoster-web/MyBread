@@ -37,10 +37,10 @@ export default function CategoryMenuSection() {
   return (
     <section id="category-menu" className="w-full py-14 bg-[#FAF6F0]">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
-        <p className="text-center font-sans text-xs font-semibold tracking-widest text-bakeryBody uppercase mb-3">
+        <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
           Categories Popular
         </p>
-        <h2 className="font-brand text-2xl sm:text-3xl font-bold text-bakeryText mb-12 text-center tracking-tight">
+        <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-muted-cocoa mb-12 text-center tracking-tight">
           Find your favorite bread
         </h2>
 
@@ -76,15 +76,15 @@ export default function CategoryMenuSection() {
 
                   {/* Bagian Bawah: Teks Kontrol Keseimbangan */}
                   <div className="w-full flex flex-col items-center text-center mt-auto">
-                    <h3 className="font-brand text-xl font-bold text-bakeryText mb-1">
+                    <h3 className="font-playfair text-xl font-bold text-muted-cocoa mb-1">
                       {category.name}
                     </h3>
-                    <p className="font-sans text-xs text-bakeryBody/70 mb-4 px-2 max-w-50 line-clamp-1">
+                    <p className="font-sans text-xs text-muted-cocoa/70 mb-4 px-2 max-w-50 line-clamp-1">
                       {category.sub}
                     </p>
 
                     {/* Badge Count */}
-                    <span className="font-sans text-xs font-medium text-bakeryText bg-[#F4EDE2] px-4 py-1.5 rounded-full transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-primary">
+                    <span className="font-sans text-xs font-medium text-muted-cocoa bg-[#F4EDE2] px-4 py-1.5 rounded-full transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-primary">
                       {category.count} produk
                     </span>
                   </div>

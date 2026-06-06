@@ -34,10 +34,10 @@ export default function OrderedPlatformSection() {
       className="w-full bg-white py-14 border-y border-[#EFEAE2] overflow-hidden"
     >
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
-        <p className="text-center font-sans text-xs font-semibold tracking-widest text-bakeryBody uppercase mb-3">
+        <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
           Partner Delivery
         </p>
-        <h2 className="font-brand text-2xl sm:text-3xl font-bold text-bakeryText mb-10 text-center tracking-tight">
+        <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-bakeryText mb-10 text-center tracking-tight">
           Available on your favorite platforms
         </h2>
 
@@ -71,11 +71,11 @@ export default function OrderedPlatformSection() {
                 </div>
 
                 <div className="flex flex-col justify-center min-w-0">
-                  <span className="font-sans font-medium text-lg text-bakeryBody group-hover:text-bakeryText transition-colors duration-300 tracking-wide truncate">
+                  <span className="font-sans font-medium text-lg text-muted-cocoa group-hover:text-bakeryText transition-colors duration-300 tracking-wide truncate">
                     {platform.name}
                   </span>
 
-                  <span className="font-sans text-xs text-bakeryBody/70 group-hover:text-primary transition-colors duration-300 tracking-wide flex items-center gap-1 mt-0.5">
+                  <span className="font-sans text-xs text-muted-cocoa/70 group-hover:text-primary transition-colors duration-300 tracking-wide flex items-center gap-1 mt-0.5">
                     <span>Click to Order</span>
                     <span className="transition-transform duration-300 transform group-hover:translate-x-1">
                       -&gt;
