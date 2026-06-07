@@ -31,7 +31,7 @@ export default function OrderedPlatformSection() {
   return (
     <section
       id="ordered-platform"
-      className="w-full bg-white py-14 border-y border-[#EFEAE2] overflow-hidden"
+      className="w-full py-14 bg-white border-y border-[#EFEAE2] overflow-hidden"
     >
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
         <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">

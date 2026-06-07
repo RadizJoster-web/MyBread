@@ -35,7 +35,7 @@ export default function CategoryMenuSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section id="category-menu" className="w-full py-14 bg-[#FAF6F0]">
+    <section id="category-menu" className="w-full py-14 ">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
         <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
           Categories Popular

@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 
 // Components
 import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 
 export default function RootLayout({
   children,
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className="bg-light text-muted-cocoa h-full font-inter">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

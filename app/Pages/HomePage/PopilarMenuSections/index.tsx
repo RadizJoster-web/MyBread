@@ -52,7 +52,7 @@ const dummyProducts: Product[] = [
 
 export default function PopularMenuSection() {
   return (
-    <section id="popular-menu" className="w-full py-16 bg-[#FAF6F0]">
+    <section id="popular-menu" className="w-full py-16 ">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
         <Header />
 
