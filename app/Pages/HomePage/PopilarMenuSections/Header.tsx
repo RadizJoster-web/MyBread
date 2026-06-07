@@ -3,7 +3,10 @@ import Link from "next/link";
 export default function Header() {
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-10">
-      <div className="relative">
+      <div className="relative flex flex-col items-start">
+        <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
+          Best Seler
+        </p>
         <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-muted-cocoa tracking-tight">
           Our Customer Favorites
         </h2>
