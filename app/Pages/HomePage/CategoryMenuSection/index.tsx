@@ -35,23 +35,41 @@ export default function CategoryMenuSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section id="category-menu" className="w-full py-14 ">
+    <section id="category-menu" className="w-full py-14 overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
-        <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
-          Categories Popular
-        </p>
-        <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-muted-cocoa mb-12 text-center tracking-tight">
-          Find your favorite bread
-        </h2>
+        <motion.header
+          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.21, 0.45, 0.32, 0.9],
+          }}
+          className="w-full text-center mb-12"
+        >
+          <p className="font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
+            Categories Popular
+          </p>
+          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-muted-cocoa tracking-tight">
+            Find your favorite bread
+          </h2>
+        </motion.header>
 
-        {/* Grid Container & Mobile Scrollable Layer */}
-        <div className="flex overflow-x-auto pb-8 gap-6 no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:pb-0 snap-x snap-mandatory justify-start sm:justify-center">
+        <div className="flex overflow-x-auto overflow-y-hidden pb-8 gap-6 no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:pb-0 snap-x snap-mandatory justify-start sm:justify-center">
           {categories.map((category, index) => {
             const isActive = activeIndex === index;
 
             return (
-              <div
+              <motion.div
                 key={category.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.8 }}
+                transition={{
+                  delay: index * 0.08,
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
                 className="snap-center min-w-65 sm:min-w-0 py-4"
                 onMouseEnter={() => setActiveIndex(index)}
               >
@@ -62,7 +80,6 @@ export default function CategoryMenuSection() {
                       : "hover:bg-white/80"
                   }`}
                 >
-                  {/* Bagian Atas: Icon Kontainer */}
                   <div className="flex-1 flex items-center justify-center w-full">
                     <div className="relative w-20 h-20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
                       <Image
@@ -74,7 +91,6 @@ export default function CategoryMenuSection() {
                     </div>
                   </div>
 
-                  {/* Bagian Bawah: Teks Kontrol Keseimbangan */}
                   <div className="w-full flex flex-col items-center text-center mt-auto">
                     <h3 className="font-playfair text-xl font-bold text-muted-cocoa mb-1">
                       {category.name}
@@ -83,13 +99,11 @@ export default function CategoryMenuSection() {
                       {category.sub}
                     </p>
 
-                    {/* Badge Count */}
                     <span className="font-sans text-xs font-medium text-muted-cocoa bg-[#F4EDE2] px-4 py-1.5 rounded-full transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-primary">
                       {category.count} produk
                     </span>
                   </div>
 
-                  {/* Arrow Indicator Animasi - Hanya muncul saat Active / Hover */}
                   <div className="absolute bottom-6 right-6 overflow-hidden w-6 h-6 flex items-center justify-center">
                     <span
                       className={`text-primary font-light text-base transition-all duration-500 transform ${
@@ -102,7 +116,6 @@ export default function CategoryMenuSection() {
                     </span>
                   </div>
 
-                  {/* Border Bawah Dekoratif saat Active */}
                   {isActive && (
                     <motion.div
                       layoutId="activeBorder"
@@ -115,7 +128,7 @@ export default function CategoryMenuSection() {
                     />
                   )}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

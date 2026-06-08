@@ -4,6 +4,7 @@ import Header from "./Header";
 import ProductGrid from "@/components/ui/Menu/ProductGrid";
 import ProductCard from "@/components/ui/Menu/MroductCard";
 import type { Product } from "@/components/ui/Menu/menuType";
+import { motion } from "framer-motion";
 
 const dummyProducts: Product[] = [
   {
@@ -52,15 +53,29 @@ const dummyProducts: Product[] = [
 
 export default function PopularMenuSection() {
   return (
-    <section id="popular-menu" className="w-full py-16 ">
+    <section id="popular-menu" className="w-full py-16 overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
         <Header />
 
-        <ProductGrid>
-          {dummyProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </ProductGrid>
+        <div className="overflow-y-hidden py-4">
+          <ProductGrid>
+            {dummyProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  delay: index * 0.1,
+                  duration: 0.6,
+                  ease: [0.21, 0.45, 0.32, 0.9],
+                }}
+              >
+                <ProductCard product={product} />
+              </motion.div>
+            ))}
+          </ProductGrid>
+        </div>
       </div>
     </section>
   );

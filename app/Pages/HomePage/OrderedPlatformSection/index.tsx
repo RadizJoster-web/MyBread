@@ -34,22 +34,32 @@ export default function OrderedPlatformSection() {
       className="w-full py-14 bg-white border-y border-[#EFEAE2] overflow-hidden"
     >
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
-        <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
-          Partner Delivery
-        </p>
-        <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-bakeryText mb-10 text-center tracking-tight">
-          Available on your favorite platforms
-        </h2>
-
-        <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:pb-0 sm:gap-8 snap-x snap-mandatory">
+        <motion.header
+          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.21, 0.45, 0.32, 0.9],
+          }}
+          className="w-full text-center mb-12"
+        >
+          <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
+            Partner Delivery
+          </p>
+          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-bakeryText mb-10 text-center tracking-tight">
+            Available on your favorite platforms
+          </h2>
+        </motion.header>
+        <div className="flex overflow-x-auto overflow-y-hidden pb-6 gap-4 no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:pb-0 sm:gap-8 snap-x snap-mandatory">
           {orderedPlatforms.map((platform, index) => (
             <motion.div
               key={platform.name}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.8 }}
               transition={{
-                delay: index * 0.05,
+                delay: index * 0.08,
                 duration: 0.5,
                 ease: "easeOut",
               }}

@@ -71,42 +71,52 @@ const testimonialsData = [
 ];
 
 export default function TestimonialsSection() {
-  // Menampilkan 2 komentar sekaligus dalam satu view
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   const handlePrev = () => {
+    setDirection(-1);
     setCurrentIndex((prev) =>
       prev === 0 ? testimonialsData.length - 2 : prev - 2,
     );
   };
 
   const handleNext = () => {
+    setDirection(1);
     setCurrentIndex((prev) =>
       prev >= testimonialsData.length - 2 ? 0 : prev + 2,
     );
   };
 
-  // Mendapatkan pasangan data yang aktif saat ini (2 data)
   const activeComments = testimonialsData.slice(currentIndex, currentIndex + 2);
 
   return (
-    <section id="testimonials" className="w-full py-20">
+    <section id="testimonials" className="w-full py-20 overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16 flex flex-col">
-        {/* 1. Header Component */}
         <TestimonialHeader />
 
-        {/* Slider Wrapper Controls */}
         <div className="relative w-full">
-          {/* 2. Comments Grid View (Menampilkan Tepat 2 Kolom) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch min-h-[250px]">
-            <AnimatePresence mode="wait">
-              {activeComments.map((item) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch min-h-[250px] overflow-hidden py-2">
+            <AnimatePresence mode="wait" initial={false}>
+              {activeComments.map((item, idx) => (
                 <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.3 }}
+                  key={`${item.id}-${currentIndex}`}
+                  initial={{
+                    opacity: 0,
+                    x: direction > 0 ? 40 : -40,
+                    filter: "blur(4px)",
+                  }}
+                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  exit={{
+                    opacity: 0,
+                    x: direction > 0 ? -40 : 40,
+                    filter: "blur(4px)",
+                  }}
+                  transition={{
+                    delay: idx * 0.05,
+                    duration: 0.5,
+                    ease: [0.21, 0.45, 0.32, 0.9],
+                  }}
                   className="h-full"
                 >
                   <CommentCard
@@ -121,26 +131,28 @@ export default function TestimonialsSection() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation Slider Buttons (Arrow) */}
           <div className="flex justify-center gap-4 mt-8">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handlePrev}
               className="w-11 h-11 rounded-full bg-white hover:bg-primary border border-[#EFECE6] flex items-center justify-center text-playfair hover:text-white transition-all duration-300 shadow-sm cursor-pointer"
               aria-label="Previous testimonials"
             >
               <FiChevronLeft className="text-xl" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleNext}
               className="w-11 h-11 rounded-full bg-white hover:bg-primary border border-[#EFECE6] flex items-center justify-center text-playfair hover:text-white transition-all duration-300 shadow-sm cursor-pointer"
               aria-label="Next testimonials"
             >
               <FiChevronRight className="text-xl" />
-            </button>
+            </motion.button>
           </div>
         </div>
 
-        {/* 3. Total Rating Summary Component */}
         <TotalRating />
       </div>
     </section>
