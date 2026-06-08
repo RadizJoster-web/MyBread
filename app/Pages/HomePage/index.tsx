@@ -10,7 +10,7 @@ import LocationSection from "./LocationSection"
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen w-full bg-light overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-light overflow-x-hidden">
       <HeroSection />
       <OrderedPlatformSection />
       <CategoryMenuSection />
@@ -20,6 +20,6 @@ export default function HomePage() {
       <TestimonialsSection />
       <ContactSection />
       <LocationSection />
-    </main>
+    </div>
   );
 }

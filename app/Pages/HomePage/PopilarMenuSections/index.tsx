@@ -53,7 +53,7 @@ const dummyProducts: Product[] = [
 
 export default function PopularMenuSection() {
   return (
-    <section id="popular-menu" className="w-full py-16 overflow-hidden">
+    <main id="popular-menu" className="w-full py-16 overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
         <Header />
 
@@ -77,6 +77,6 @@ export default function PopularMenuSection() {
           </ProductGrid>
         </div>
       </div>
-    </section>
+    </main>
   );
 }
