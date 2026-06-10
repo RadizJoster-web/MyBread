@@ -1,6 +1,6 @@
-export type ProductCategory = "All" | "Pastry" | "Cake" | "Drink";
+export type ProductCategory = "All" | "Pastry" | "Cake" | "Drink" | "Cookies";
 
-export type ProductTag = "Best Seller" | "Baru" | "Spesial" | "Limited";
+export type ProductTag = "Best Seller" | "New" | "Special" | "Limited";
 
 export interface Product {
   id: number;

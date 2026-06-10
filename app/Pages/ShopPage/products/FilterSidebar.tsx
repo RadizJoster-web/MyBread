@@ -5,7 +5,7 @@ import { CATEGORIES } from "@/assets/data/productData/productData";
 import { ProductCategory } from "@/type/productDataType";
 
 const RATING_OPTIONS = [
-  { label: "Semua Rating", value: 0 },
+  { label: "All Ratings", value: 0 },
   { label: "4.5", value: 4.5 },
   { label: "4.7", value: 4.7 },
   { label: "4.8", value: 4.8 },
@@ -47,7 +47,7 @@ export default function FilterSidebar({
       variants={sidebarVariants}
       initial="hidden"
       animate="visible"
-      className="w-full rounded-2xl p-6 flex-shrink-0"
+      className="w-full rounded-2xl p-6 shrink-0"
       style={{
         background: "rgba(255,255,255,0.75)",
         backdropFilter: "blur(12px)",
@@ -64,7 +64,7 @@ export default function FilterSidebar({
             fontFamily: "'Playfair Display', Georgia, serif",
           }}
         >
-          Filter Produk
+          Product Filter
         </h2>
         <button
           onClick={onReset}
@@ -87,10 +87,10 @@ export default function FilterSidebar({
           className="text-[10px] font-bold tracking-widest uppercase mb-3"
           style={{ color: "#7a6a53", fontFamily: "'Inter', sans-serif" }}
         >
-          Kategori
+          category
         </p>
         <ul className="flex flex-col gap-2">
-          {CATEGORIES.map(({ label, count }) => {
+          {CATEGORIES.map(({ label }) => {
             const active = activeCategory === label;
             return (
               <li key={label}>
@@ -101,7 +101,7 @@ export default function FilterSidebar({
                   <span className="flex items-center gap-2.5">
                     {/* Radio dot */}
                     <span
-                      className="w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors"
+                      className="w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
                       style={{
                         borderColor: active
                           ? "#4a3525"
@@ -127,18 +127,6 @@ export default function FilterSidebar({
                       {label}
                     </span>
                   </span>
-
-                  {/* Count badge */}
-                  <span
-                    className="text-[10px] font-semibold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors"
-                    style={{
-                      background: active ? "#4a3525" : "rgba(212,163,115,0.18)",
-                      color: active ? "#fdf8f0" : "#7a6a53",
-                      fontFamily: "'Inter', sans-serif",
-                    }}
-                  >
-                    {count}
-                  </span>
                 </button>
               </li>
             );
@@ -157,7 +145,7 @@ export default function FilterSidebar({
           className="text-[10px] font-bold tracking-widest uppercase mb-3"
           style={{ color: "#7a6a53", fontFamily: "'Inter', sans-serif" }}
         >
-          Rentang Harga
+          Price Range
         </p>
 
         <div className="flex items-center gap-2 mb-3">
@@ -179,7 +167,7 @@ export default function FilterSidebar({
               fontFamily: "'Inter', sans-serif",
             }}
           />
-          <span className="text-xs flex-shrink-0" style={{ color: "#7a6a53" }}>
+          <span className="text-xs shrink-0" style={{ color: "#7a6a53" }}>
             —
           </span>
           <input
@@ -235,7 +223,7 @@ export default function FilterSidebar({
           className="text-[10px] font-bold tracking-widest uppercase mb-3"
           style={{ color: "#7a6a53", fontFamily: "'Inter', sans-serif" }}
         >
-          Rating Minimum
+          Minimum Rating
         </p>
         <ul className="flex flex-col gap-2">
           {RATING_OPTIONS.map(({ label, value }) => {
@@ -247,7 +235,7 @@ export default function FilterSidebar({
                   className="flex items-center gap-2.5"
                 >
                   <span
-                    className="w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors"
+                    className="w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
                     style={{
                       borderColor: active ? "#4a3525" : "rgba(160,120,60,0.35)",
                       background: active ? "#4a3525" : "transparent",
@@ -268,7 +256,7 @@ export default function FilterSidebar({
                       fontFamily: "'Inter', sans-serif",
                     }}
                   >
-                    {value === 0 ? "Semua Rating" : `${label} ★ ke atas`}
+                    {value === 0 ? "All Ratings" : `${label}★ ++`}
                   </span>
                 </button>
               </li>
