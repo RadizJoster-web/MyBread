@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { CATEGORIES } from "@/assets/data/productData/productData";
-import { ProductCategory } from "@/assets/data/productData/productDataType";
+import { ProductCategory } from "@/type/productDataType";
 
 const RATING_OPTIONS = [
   { label: "Semua Rating", value: 0 },

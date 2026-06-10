@@ -1,19 +1,21 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import ShopHeader from "./ShopHeader";
 import FilterSidebar from "./products/FilterSidebar";
 import ProductToolbar from "./products/ProductToolbar";
 import ProductGrid from "@/components/ui/ProductGrid";
 import PromoBar from "./products/PromoBar";
-import { products, SORT_OPTIONS } from "@/assets/data/productData/productData";
-import type { ProductCategory } from "@/assets/data/productData/productDataType";
+import { useProduct } from "@/hooks/useProduct";
+import { SORT_OPTIONS } from "@/assets/data/productData/productData";
+import type { ProductCategory } from "@/type/productDataType";
 
 const MAX_PRICE = 150000;
 
 export default function ShopPage() {
-  const [activeCategory, setActiveCategory] =
-    useState<ProductCategory>("Semua");
+  const { dataProducts, error, loading, fetchProduct } = useProduct();
+
+  const [activeCategory, setActiveCategory] = useState<ProductCategory>("All");
   const [priceRange, setPriceRange] = useState<[number, number]>([
     0,
     MAX_PRICE,
@@ -23,10 +25,14 @@ export default function ShopPage() {
   const [sortBy, setSortBy] = useState(SORT_OPTIONS[0]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filtered = useMemo(() => {
-    let result = [...products];
+  useEffect(() => {
+    fetchProduct();
+  }, []);
 
-    if (activeCategory !== "Semua") {
+  const filtered = useMemo(() => {
+    let result = [...dataProducts];
+
+    if (activeCategory !== "All") {
       result = result.filter((p) => p.category === activeCategory);
     }
     result = result.filter(
@@ -61,10 +67,17 @@ export default function ShopPage() {
     }
 
     return result;
-  }, [activeCategory, priceRange, minRating, searchQuery, sortBy]);
+  }, [
+    dataProducts,
+    activeCategory,
+    priceRange,
+    minRating,
+    searchQuery,
+    sortBy,
+  ]);
 
   const handleReset = () => {
-    setActiveCategory("Semua");
+    setActiveCategory("All");
     setPriceRange([0, MAX_PRICE]);
     setMinRating(0);
     setSearchQuery("");
@@ -77,22 +90,18 @@ export default function ShopPage() {
       style={{ background: "var(--warm-gradient)" }}
     >
       <div className="max-w-screen-xl mx-auto px-6 md:px-10 py-10 mt-20">
-        {/* Header: breadcrumb, title, search */}
         <ShopHeader
           totalVisible={filtered.length}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
         />
 
-        {/* Hairline divider */}
         <div
           className="h-px mb-8"
           style={{ background: "rgba(212,163,115,0.2)" }}
         />
 
-        {/* Body: sidebar + main */}
         <div className="flex gap-7 items-start">
-          {/* Sidebar */}
           <div className="hidden md:block w-64 lg:w-72 flex-shrink-0 sticky top-8">
             <FilterSidebar
               activeCategory={activeCategory}
@@ -105,7 +114,6 @@ export default function ShopPage() {
             />
           </div>
 
-          {/* Main content */}
           <div className="flex-1 min-w-0">
             <ProductToolbar
               viewMode={viewMode}
@@ -116,7 +124,28 @@ export default function ShopPage() {
 
             <PromoBar />
 
-            <ProductGrid products={filtered} viewMode={viewMode} />
+            {loading && (
+              <div
+                className="flex justify-center py-24 text-sm"
+                style={{ color: "#7a6a53", fontFamily: "'Inter', sans-serif" }}
+              >
+                Memuat produk...
+              </div>
+            )}
+
+            {error && !loading && (
+              <div
+                className="flex flex-col items-center py-24 gap-2 text-sm"
+                style={{ color: "#7a6a53", fontFamily: "'Inter', sans-serif" }}
+              >
+                <span className="text-4xl">⚠️</span>
+                {error}
+              </div>
+            )}
+
+            {!loading && !error && (
+              <ProductGrid products={filtered} viewMode={viewMode} />
+            )}
           </div>
         </div>
       </div>

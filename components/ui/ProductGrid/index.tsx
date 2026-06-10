@@ -1,8 +1,8 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import ProductCard from "../ProductCard";
-import { Product } from "@/assets/data/productData/productDataType";
+import type { Product } from "@/type/productDataType";
 
 interface ProductGridProps {
   products: Product[];
@@ -22,7 +22,7 @@ export default function ProductGrid({ products, viewMode }: ProductGridProps) {
           className="text-base italic"
           style={{ color: "#7a6a53", fontFamily: "'Lora', Georgia, serif" }}
         >
-          Tidak ada produk yang sesuai.
+          No matching products found
         </p>
       </motion.div>
     );

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
-import { Product } from "@/assets/data/productData/productDataType";
+import type { Product } from "@/type/productDataType";
 import ProductGridLayout from "./ProductGridLayout";
 import ProductListLayout from "./ProductListLayout";
 
@@ -63,8 +63,6 @@ export default function ProductCard({
     discount,
   };
 
-  // motion.div ada di sini sebagai satu-satunya animated wrapper
-  // agar AnimatePresence di ProductGrid bisa track enter/exit dengan benar
   return (
     <motion.div
       custom={index}

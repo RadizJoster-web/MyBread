@@ -1,8 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa6";
 import { ProductLayoutProps } from "./index";
+
+const MotionImage = motion.create(Image);
 
 export default function ProductGridLayout({
   product,
@@ -33,13 +36,16 @@ export default function ProductGridLayout({
         className="relative overflow-hidden flex items-center justify-center"
         style={{ background: "rgba(245,237,216,0.5)", aspectRatio: "4/3" }}
       >
-        <motion.span
-          className="text-7xl select-none"
-          animate={{ scale: hovered ? 1.08 : 1 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {product.emoji}
-        </motion.span>
+        <div className="relative w-3/4 h-3/4">
+          <MotionImage
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-contain select-none"
+            animate={{ scale: hovered ? 1.08 : 1 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          />
+        </div>
 
         {/* Tag badge */}
         {tagStyle && (
