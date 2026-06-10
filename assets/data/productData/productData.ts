@@ -1,0 +1,157 @@
+import type { Product, ProductCategory } from "@/type/productDataType";
+
+export const CATEGORIES: { label: ProductCategory; count: number }[] = [
+  { label: "All", count: 12 },
+  { label: "Pastry", count: 4 },
+  { label: "Cake", count: 3 },
+  { label: "Drink", count: 1 },
+];
+
+export const SORT_OPTIONS = [
+  "Relevansi",
+  "Harga: Rendah ke Tinggi",
+  "Harga: Tinggi ke Rendah",
+  "Rating Tertinggi",
+  "Terlaris",
+];
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: "Croissant Butter Classic",
+    category: "Pastry",
+    price: 28000,
+    image: "",
+    description:
+      "Croissant dengan lapisan mentega premium, renyah di luar lembut di dalam",
+    tag: "Best Seller",
+    rating: 4.9,
+    reviewCount: 284,
+  },
+  {
+    id: 2,
+    name: "Sourdough Artisan Loaf",
+    category: "Cake",
+    price: 65000,
+    originalPrice: 75000,
+    image: "",
+    description:
+      "Cake sourdough dengan fermentasi 24 jam, kerak tebal dan crumb yang chewy",
+    tag: "Best Seller",
+    rating: 4.8,
+    reviewCount: 196,
+  },
+  {
+    id: 3,
+    name: "Cinnamon Roll Jumbo",
+    category: "Pastry",
+    price: 36000,
+    image: "",
+    description:
+      "Cinnamon roll ukuran jumbo dengan cream cheese frosting yang melimpah",
+    tag: "Best Seller",
+    rating: 4.9,
+    reviewCount: 312,
+  },
+  {
+    id: 4,
+    name: "Tart Cokelat Noir",
+    category: "Cake",
+    price: 52000,
+    image: "",
+    description:
+      "Dark chocolate 70%, ganache lembut, crust hazelnut yang renyah",
+    tag: "Spesial",
+    rating: 4.7,
+    reviewCount: 178,
+  },
+  {
+    id: 5,
+    name: "Pain au Chocolat",
+    category: "Pastry",
+    price: 32000,
+    image: "",
+    description:
+      "Dua batang cokelat belgia dalam lapisan pastri yang berlapis-lapis",
+    tag: "Baru",
+    rating: 4.8,
+    reviewCount: 95,
+  },
+  {
+    id: 6,
+    name: "Cake Gandum Multigrain",
+    category: "Cake",
+    price: 55000,
+    image: "",
+    description: "Campuran biji-bijian pilihan, padat nutrisi dan serat tinggi",
+    rating: 4.6,
+    reviewCount: 143,
+  },
+  {
+    id: 7,
+    name: "Lemon Olive Oil Cake",
+    category: "Cake",
+    price: 75000,
+    image: "",
+    description: "Moist, zesty, dengan glasur lemon segar yang menyegarkan",
+    tag: "Spesial",
+    rating: 4.9,
+    reviewCount: 210,
+  },
+  {
+    id: 8,
+    name: "Brioche Topping Gula",
+    category: "Cake",
+    price: 42000,
+    image: "",
+    description:
+      "Cake susu Prancis, super soft dengan aroma mentega yang harum",
+    rating: 4.5,
+    reviewCount: 167,
+  },
+  {
+    id: 9,
+    name: "Matcha Latte Hangat",
+    category: "Drink",
+    price: 35000,
+    image: "",
+    description: "Matcha ceremonial grade, susu oat creamy dan sedikit manis",
+    tag: "Baru",
+    rating: 4.8,
+    reviewCount: 88,
+  },
+  {
+    id: 10,
+    name: "Kouign-Amann",
+    category: "Pastry",
+    price: 45000,
+    image: "",
+    description:
+      "Karamel gelap, mentega berlimpah, resep tradisional dari Brittany",
+    tag: "Limited",
+    rating: 4.9,
+    reviewCount: 54,
+  },
+  {
+    id: 11,
+    name: "Éclair Vanilla",
+    category: "Cake",
+    price: 38000,
+    image: "",
+    description: "Choux renyah diisi custard vanilla Madagascar yang kaya rasa",
+    tag: "Baru",
+    rating: 4.7,
+    reviewCount: 119,
+  },
+  {
+    id: 12,
+    name: "Almond Financier",
+    category: "Cake",
+    price: 29000,
+    image: "",
+    description:
+      "Kue almond klasik Prancis, lembut dengan sisi karamel keemasan",
+    rating: 4.6,
+    reviewCount: 76,
+  },
+];
