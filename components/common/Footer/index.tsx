@@ -4,7 +4,7 @@ import FooterBrand from "./FooterBrand";
 import FooterLinks from "./FooterLinks";
 import FooterContact from "./FooterContact";
 
-const halamanLinks = [
+const pagesList = [
   { label: "Home", href: "#" },
   { label: "About us", href: "#" },
   { label: "Shop", href: "#" },
@@ -37,7 +37,7 @@ export default function Footer() {
           <FooterBrand />
 
           {/* Kolom 2: Halaman Navigation */}
-          <FooterLinks title="Pages" links={halamanLinks} />
+          <FooterLinks title="Pages" links={pagesList} />
 
           {/* Kolom 3: Produk Links */}
           <FooterLinks title="Products" links={produkLinks} />
