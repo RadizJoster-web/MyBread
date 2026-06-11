@@ -3,32 +3,17 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link"
 
 const categories = [
   {
     name: "Pastry",
     sub: "Croissant, Pain au Chocolat, Éclair",
-    count: 12,
     icon: "croissant.png",
   },
-  {
-    name: "snack",
-    sub: "Cookies, Brownies, Biscotti",
-    count: 8,
-    icon: "cookies.png",
-  },
-  {
-    name: "Cake",
-    sub: "Red Velvet, Tart, Banana Bread",
-    count: 15,
-    icon: "cake.png",
-  },
-  {
-    name: "Drinks",
-    sub: "Kopi, Teh Artisan, Smoothies",
-    count: 10,
-    icon: "coffie.png",
-  },
+  { name: "Cake", sub: "Red Velvet, Tart, Banana Bread", icon: "cake.png" },
+  { name: "Drink", sub: "Coffie, Tea Artisan, Smoothies", icon: "coffie.png" },
+  { name: "Cookies", sub: "Cookies, Brownies, Biscotti", icon: "cookies.png" },
 ];
 
 export default function CategoryMenuSection() {
@@ -55,7 +40,7 @@ export default function CategoryMenuSection() {
           </h2>
         </motion.header>
 
-        <div className="flex overflow-x-auto overflow-y-hidden pb-8 gap-6 no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:pb-0 snap-x snap-mandatory justify-start sm:justify-center">
+        <Link href={"/shop"} className="flex overflow-x-auto overflow-y-hidden pb-8 gap-6 no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:pb-0 snap-x snap-mandatory justify-start sm:justify-center">
           {categories.map((category, index) => {
             const isActive = activeIndex === index;
 
@@ -98,10 +83,6 @@ export default function CategoryMenuSection() {
                     <p className="font-sans text-xs text-muted-cocoa/70 mb-4 px-2 max-w-50 line-clamp-1">
                       {category.sub}
                     </p>
-
-                    <span className="font-sans text-xs font-medium text-muted-cocoa bg-[#F4EDE2] px-4 py-1.5 rounded-full transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-primary">
-                      {category.count} produk
-                    </span>
                   </div>
 
                   <div className="absolute bottom-6 right-6 overflow-hidden w-6 h-6 flex items-center justify-center">
@@ -131,7 +112,7 @@ export default function CategoryMenuSection() {
               </motion.div>
             );
           })}
-        </div>
+        </Link>
       </div>
     </section>
   );
