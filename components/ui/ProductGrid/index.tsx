@@ -22,7 +22,7 @@ export default function ProductGrid({ products, viewMode }: ProductGridProps) {
           className="text-base italic"
           style={{ color: "#7a6a53", fontFamily: "'Lora', Georgia, serif" }}
         >
-          Tidak ada produk yang sesuai.
+          Nothing Matching Product 
         </p>
       </motion.div>
     );

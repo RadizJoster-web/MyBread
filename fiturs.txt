@@ -11,3 +11,5 @@ Contoh:
 - Our Customer Favorites
 
 Yang satu diikkuti dengan huruf pertama besar dan satunya tidak
+
+4. Fetching data product di home page bukan di shop page. Atau buat validasi di home & shop untuk mengecek apakah datanya sudah ada.
