@@ -12,10 +12,9 @@ export default function ProductListLayout({
   product,
   hovered,
   setHovered,
-  liked,
-  setLiked,
   tagStyle,
   discount,
+  onOpenDetail,
 }: ProductLayoutProps) {
   return (
     <div
@@ -159,6 +158,7 @@ export default function ProductListLayout({
                 fontFamily: "'Inter', sans-serif",
                 pointerEvents: hovered ? "auto" : "none",
               }}
+              onClick={onOpenDetail}
             >
               <FiEye size={12} />
               See Detail

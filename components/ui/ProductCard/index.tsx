@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import type { Product } from "@/type/productDataType";
 import ProductGridLayout from "./ProductGridLayout";
 import ProductListLayout from "./ProductListLayout";
+import PopupDetailProduct from "./PopupDetailProduct";
 
 export const TAG_STYLES: Record<string, { bg: string; color: string }> = {
   "Best Seller": { bg: "#d4a373", color: "#fff" },
@@ -22,6 +23,7 @@ export interface ProductLayoutProps {
   setLiked: (v: boolean) => void;
   tagStyle: { bg: string; color: string } | null;
   discount: number | null;
+  onOpenDetail: () => void;
 }
 
 const cardVariants: Variants = {
@@ -46,6 +48,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   const [liked, setLiked] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const tagStyle = product.tag ? TAG_STYLES[product.tag] : null;
   const discount = product.originalPrice
@@ -61,21 +64,29 @@ export default function ProductCard({
     setLiked,
     tagStyle,
     discount,
+    onOpenDetail: () => setIsOpen(true),
   };
 
   return (
-    <motion.div
-      custom={index}
-      variants={cardVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-    >
-      {viewMode === "grid" ? (
-        <ProductGridLayout {...layoutProps} />
-      ) : (
-        <ProductListLayout {...layoutProps} />
-      )}
-    </motion.div>
+    <>
+      <motion.div
+        custom={index}
+        variants={cardVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        {viewMode === "grid" ? (
+          <ProductGridLayout {...layoutProps} />
+        ) : (
+          <ProductListLayout {...layoutProps} />
+        )}
+      </motion.div>
+
+      <PopupDetailProduct
+        product={isOpen ? product : null}
+        onClose={() => setIsOpen(false)}
+      />
+    </>
   );
 }

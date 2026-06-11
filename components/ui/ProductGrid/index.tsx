@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ProductCard from "../ProductCard";
-import type { Product } from "@/type/productDataType";
+import { Product } from "@/type/productDataType";
 
 interface ProductGridProps {
   products: Product[];
@@ -22,7 +22,7 @@ export default function ProductGrid({ products, viewMode }: ProductGridProps) {
           className="text-base italic"
           style={{ color: "#7a6a53", fontFamily: "'Lora', Georgia, serif" }}
         >
-          No matching products found
+          Tidak ada produk yang sesuai.
         </p>
       </motion.div>
     );
@@ -36,14 +36,16 @@ export default function ProductGrid({ products, viewMode }: ProductGridProps) {
           : "flex flex-col gap-3"
       }
     >
-      {products.map((product, i) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          index={i}
-          viewMode={viewMode}
-        />
-      ))}
+      <AnimatePresence initial={false}>
+        {products.map((product, i) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            index={i}
+            viewMode={viewMode}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   );
 }

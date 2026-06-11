@@ -127,16 +127,16 @@ export default function ShopPage() {
             {loading && (
               <div
                 className="flex justify-center py-24 text-sm"
-                style={{ color: "#7a6a53", fontFamily: "'Inter', sans-serif" }}
+                style={{ color: "#7a6a53" }}
               >
-                Memuat produk...
+                Loading Products...
               </div>
             )}
 
             {error && !loading && (
               <div
                 className="flex flex-col items-center py-24 gap-2 text-sm"
-                style={{ color: "#7a6a53", fontFamily: "'Inter', sans-serif" }}
+                style={{ color: "#7a6a53" }}
               >
                 <span className="text-4xl">⚠️</span>
                 {error}

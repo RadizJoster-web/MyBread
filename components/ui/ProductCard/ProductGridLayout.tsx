@@ -13,6 +13,7 @@ export default function ProductGridLayout({
   setHovered,
   tagStyle,
   discount,
+  onOpenDetail,
 }: ProductLayoutProps) {
   return (
     <div
@@ -68,19 +69,15 @@ export default function ProductGridLayout({
         )}
 
         {/* Hover CTA overlay */}
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 py-3 text-center text-xs font-bold tracking-widest uppercase cursor-pointer"
-          style={{
-            background: "#4a3525",
-            color: "#fdf8f0",
-            fontFamily: "'Inter', sans-serif",
-          }}
+        <motion.button
+          className="absolute bottom-0 left-0 right-0 bg-primary hover:bg-dark-chocolate text-light py-3 text-center text-xs font-bold tracking-widest uppercase cursor-pointer"
           initial={{ y: "100%" }}
           animate={{ y: hovered ? "0%" : "100%" }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          onClick={onOpenDetail}
         >
-          Lihat Detail
-        </motion.div>
+          See Detail
+        </motion.button>
       </div>
 
       {/* Body */}
