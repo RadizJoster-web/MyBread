@@ -7,5 +7,3 @@ Contoh:
 - Our Customer Favorites
 
 Yang satu diikkuti dengan huruf pertama besar dan satunya tidak
-
-4. Perbaiki ketika user memesan dengan popup detail product setelah click pesan maka popup otomatis hilang
