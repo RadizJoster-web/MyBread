@@ -1,13 +1,11 @@
 1. Buat page browser sesuai dengan page yang di lihat user 
 Contoh: user ada di page shop maka title juga ada di shop
 
-2. Fix bug dimana ketika indikator page di navbar itu tidak konsisten
-ketika di refresh. Ketika user ada di page shop lalu di refresh maka indikator
-akan kembali ke home
-
 3. Font dari header di home page tidak konsisten
 Contoh: 
 - Available on your favorite platforms
 - Our Customer Favorites
 
 Yang satu diikkuti dengan huruf pertama besar dan satunya tidak
+
+4. Perbaiki ketika user memesan dengan popup detail product setelah click pesan maka popup otomatis hilang

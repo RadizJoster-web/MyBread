@@ -44,8 +44,9 @@ export default function PopupDetailProduct({
       price: product.price,
       quantity: qty,
     };
-
+    
     addToCart(payload);
+    onClose()
   };
 
   return (
