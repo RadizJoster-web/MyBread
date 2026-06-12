@@ -65,7 +65,7 @@ export default function Navbar() {
     <>
       <nav
         ref={headerRef}
-        className="fixed top-0 left-0 z-50 w-full h-20 flex items-center justify-between px-6 md:px-16 xl:px-80 transition-all duration-300 bg-transparent"
+        className="fixed top-0 left-0 z-50 w-full h-20 flex items-center justify-between px-6 md:px-16 xl:px-50 2xl:px-80 transition-all duration-300 bg-transparent"
       >
         <Link
           href="/"
@@ -82,7 +82,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="absolute top-20 left-0 w-full bg-white border-t border-[#EFEAE2] shadow-lg lg:hidden flex flex-col py-2 z-40"
+              className="absolute top-20 left-0 w-full h-screen bg-white border-t border-[#EFEAE2] shadow-lg lg:hidden flex flex-col justify-start items-start md:items-center py-2 pt-20 z-40"
             >
               {pagesList.map((page, index) => (
                 <motion.li
@@ -94,7 +94,7 @@ export default function Navbar() {
                   <Link
                     href={page.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-3 px-6 text-primary hover:bg-bakeryBg hover:text-primary font-sans font-medium transition-colors"
+                    className="block py-3 px-6 text-2xl text-primary hover:bg-bakeryBg hover:text-primary font-sans font-medium transition-colors"
                   >
                     {page.label}
                   </Link>
@@ -136,7 +136,7 @@ export default function Navbar() {
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="flex items-center gap-1 bg-muted-cocoa text-light py-2 px-6 rounded-full font-medium hover:bg-dark-chocolate transition-all duration-300 cursor-pointer"
+            className="hidden md:flex items-center gap-1 bg-muted-cocoa text-light py-2 px-6 rounded-full font-medium hover:bg-dark-chocolate transition-all duration-300 cursor-pointer"
           >
             Order Now
           </motion.button>
