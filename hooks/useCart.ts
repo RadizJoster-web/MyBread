@@ -1,39 +1,39 @@
-"use client";
+import { create } from "zustand";
 
-import { useState } from "react";
-
-export default function useCart() {
-  const [cartItems, setCartItems] = useState<any[]>([
-    {
-      image: "/images/croissant-icon.jpeg",
-      name: "Sample Bread",
-      price: 5000,
-      quantity: 2,
-    },
-    {
-      image: "/images/croissant-icon.jpeg",
-      name: "Sample Pastry",
-      price: 3000,
-      quantity: 1,
-    },
-    {
-      image: "/images/croissant-icon.jpeg",
-      name: "Sample Cake",
-      price: 15000,
-      quantity: 1,
-    },
-    {
-      image: "/images/croissant-icon.jpeg",
-      name: "Sample Croissant",
-      price: 7000,
-      quantity: 3,
-    },
-  ]);
-  const [cartOpen, setCartOpen] = useState(false);
-
-  const addToCart = (item: any) => {
-    setCartItems((prevItems) => [...prevItems, item]);
-  };
-
-  return { cartItems, cartOpen, setCartOpen, addToCart };
+interface CartItem {
+  image: string;
+  name: string;
+  price: number;
+  quantity: number;
 }
+
+interface CartStore {
+  cartItems: CartItem[];
+  cartOpen: boolean;
+  setCartOpen: (open: boolean) => void;
+  addToCart: (item: CartItem) => void;
+}
+
+const useCart = create<CartStore>((set) => ({
+  cartItems: [],
+  cartOpen: false,
+
+  setCartOpen: (open) => set({ cartOpen: open }),
+
+  addToCart: (item) =>
+    set((state) => {
+      const existing = state.cartItems.find((i) => i.name === item.name);
+      if (existing) {
+        return {
+          cartItems: state.cartItems.map((i) =>
+            i.name === item.name
+              ? { ...i, quantity: i.quantity + item.quantity }
+              : i,
+          ),
+        };
+      }
+      return { cartItems: [...state.cartItems, item] };
+    }),
+}));
+
+export default useCart;

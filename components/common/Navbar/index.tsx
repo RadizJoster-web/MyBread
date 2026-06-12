@@ -24,12 +24,11 @@ export default function Navbar() {
 
   const headerRef = useRef<HTMLDivElement>(null);
 
-  const pathname = usePathname()
+  const pathname = usePathname();
   useEffect(() => {
-  const match = pagesList.find((page) => page.href === pathname);
-  if (match) setSelectedPage(match.label);
-}, [pathname]);
-
+    const match = pagesList.find((page) => page.href === pathname);
+    if (match) setSelectedPage(match.label);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {

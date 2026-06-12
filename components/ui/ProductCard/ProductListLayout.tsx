@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa6";
 import { FiEye } from "react-icons/fi";
 import { ProductLayoutProps } from "./index";
+import useCart from "@/hooks/useCart";
 
 const MotionImage = motion.create(Image);
 
@@ -16,6 +17,20 @@ export default function ProductListLayout({
   discount,
   onOpenDetail,
 }: ProductLayoutProps) {
+  const { addToCart } = useCart();
+
+  const handleAddItem = (e: any) => {
+    e.preventDefault();
+
+    const payload = {
+      image: product.image,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+    };
+
+    addToCart(payload);
+  };
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -168,6 +183,7 @@ export default function ProductListLayout({
             <motion.button
               whileTap={{ scale: 0.92 }}
               className="flex items-center gap-1.5 bg-primary hover:bg-dark-chocolate text-light duration-200 transition-colors px-3.5 py-1.5 rounded-full text-xs font-semibold cursor-pointer shrink-0"
+              onClick={(e) => handleAddItem(e)}
             >
               Add to Cart
             </motion.button>

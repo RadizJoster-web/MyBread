@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiShoppingCart } from "react-icons/fi";
 import { FaStar } from "react-icons/fa6";
 import { Product } from "@/type/productDataType";
+import useCart from "@/hooks/useCart";
 
 const TAG_STYLES: Record<string, { bg: string; color: string }> = {
   "Best Seller": { bg: "#d4a373", color: "#fff" },
@@ -23,12 +24,29 @@ export default function PopupDetailProduct({
   product,
   onClose,
 }: PopupDetailProductProps) {
+  const { addToCart } = useCart();
+
   const [qty, setQty] = useState(1);
 
   const tagStyle = product?.tag ? TAG_STYLES[product.tag] : null;
   const discount = product?.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : null;
+
+  const handleAddItem = (e: any) => {
+    e.preventDefault();
+
+    if (!product) return;
+
+    const payload = {
+      image: product.image,
+      name: product.name,
+      price: product.price,
+      quantity: qty,
+    };
+
+    addToCart(payload);
+  };
 
   return (
     <AnimatePresence>
@@ -216,6 +234,7 @@ export default function PopupDetailProduct({
                   <motion.button
                     whileTap={{ scale: 0.97 }}
                     className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary hover:bg-dark-chocolate text-light duration-150 rounded-2xl text-sm font-bold tracking-wide transition-colors cursor-pointer"
+                    onClick={(e) => handleAddItem(e)}
                   >
                     <FiShoppingCart size={15} />
                     Add to Cart

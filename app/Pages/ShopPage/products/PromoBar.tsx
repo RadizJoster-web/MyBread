@@ -26,7 +26,7 @@ export default function PromoBar() {
           className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-2"
           style={{ background: "rgba(212,163,115,0.2)", color: "#d4a373" }}
         >
-          🔥 Promo Hari Ini
+          🔥 Promo For Today
         </span>
         <h3
           className="text-xl font-black mb-1"
@@ -35,7 +35,7 @@ export default function PromoBar() {
             fontFamily: "'Playfair Display', Georgia, serif",
           }}
         >
-          Gratis Ongkir min. Rp 150.000
+          Free Delevery min. Rp 75.000
         </h3>
         <p
           className="text-xs"
@@ -44,12 +44,12 @@ export default function PromoBar() {
             fontFamily: "'Inter', sans-serif",
           }}
         >
-          Berlaku untuk area Jabodetabek. Kode:{" "}
+          Only in Jabodetabek. Kode:{" "}
           <span
             className="font-bold tracking-wider"
             style={{ color: "#d4a373" }}
           >
-            LAFARINE
+            CIHUYKAN
           </span>
         </p>
       </div>

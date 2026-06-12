@@ -19,6 +19,7 @@ interface CartProps {
 }
 
 export default function Cart({ cartItems, cartOpen, onClose }: CartProps) {
+  console.log(cartItems);
   const hasItems = cartItems && cartItems.length > 0;
 
   const totalPrice = hasItems
