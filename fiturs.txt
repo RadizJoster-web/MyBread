@@ -5,5 +5,4 @@ Contoh: user ada di page shop maka title juga ada di shop
 Contoh: 
 - Available on your favorite platforms
 - Our Customer Favorites
-
 Yang satu diikkuti dengan huruf pertama besar dan satunya tidak

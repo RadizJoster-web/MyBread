@@ -7,29 +7,15 @@ import useCart from "@/hooks/useCart";
 
 import Cart from "@/components/ui/Cart";
 import { BsList, BsX } from "react-icons/bs";
-import { usePathname } from "next/navigation";
-
-const pagesList = [
-  { label: "Home", href: "/" },
-  { label: "About us", href: "/about" },
-  { label: "Shop", href: "/shop" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/#contact" },
-];
+import { usePage } from "@/hooks/usePage";
+import { pagesList } from "@/assets/pageList";
 
 export default function Navbar() {
+  const { selectedPage, setSelectedPage } = usePage();
   const { cartOpen, setCartOpen, cartItems } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedPage, setSelectedPage] = useState("Home");
 
   const headerRef = useRef<HTMLDivElement>(null);
-
-  const pathname = usePathname();
-  useEffect(() => {
-    const match = pagesList.find((page) => page.href === pathname);
-    if (match) setSelectedPage(match.label);
-  }, [pathname]);
-
   useEffect(() => {
     const handleScroll = () => {
       if (!headerRef.current) return;
