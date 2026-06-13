@@ -63,7 +63,7 @@ export default function OrderedPlatformSection() {
                 duration: 0.5,
                 ease: "easeOut",
               }}
-              className="snap-center min-w-[200px] sm:min-w-0"
+              className="snap-center min-w-50 sm:min-w-0"
             >
               <Link
                 href={platform.link}
@@ -71,7 +71,7 @@ export default function OrderedPlatformSection() {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 py-4 px-6 bg-transparent border border-transparent rounded-2xl transition-all duration-300 hover:bg-bakeryBg/40 hover:border-[#EFEAE2]"
               >
-                <div className="relative w-12 h-12 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 flex-shrink-0">
+                <div className="relative w-12 h-12 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 shrink-0">
                   <Image
                     src={`/images/orderedPlatforms/${platform.logo}`}
                     alt={`${platform.name} logo`}
