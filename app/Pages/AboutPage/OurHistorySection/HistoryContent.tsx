@@ -20,9 +20,7 @@ export default function HistoryContent() {
       <h2 className="mt-5 font-playfair text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.15] text-[#2A1A08] tracking-tight">
         From a Small Kitchen
         <br />
-        <span className="italic text-primary">
-          To the Hearts of Thousands
-        </span>
+        <span className="italic text-primary">To the Hearts of Thousands</span>
       </h2>
 
       {/* Narasi Cerita Sejarah Toko */}
@@ -42,8 +40,8 @@ export default function HistoryContent() {
 
         <p>
           The name{" "}
-          <span className="font-medium text-[#2A1A08]">"My Bread"</span>,
-          French for flour, reflects our belief that simple ingredients can be
+          <span className="font-medium text-[#2A1A08]">"My Bread"</span>, French
+          for flour, reflects our belief that simple ingredients can be
           transformed into something memorable through skill, patience, and
           passion.
         </p>

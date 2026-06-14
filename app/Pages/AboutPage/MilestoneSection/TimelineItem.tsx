@@ -48,24 +48,34 @@ export default function TimelineItem({
 
       {/* ── Content Card ── */}
       <motion.div
+        // PERBAIKAN 1: Masukkan semua animasi hover fisik ke dalam Framer Motion
         whileHover={{
-          scale: 1.02,
+          scale: 1.015,
           y: -4,
+          boxShadow: isCurrent
+            ? "0 12px 35px rgba(184,137,42,0.2)"
+            : "0 12px 30px rgba(74,53,37,0.08)",
         }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        // PERBAIKAN 2: Gunakan jenis transisi easing yang responsif dan instan tanpa delay
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 30,
+        }}
         className={`
-          flex-1 flex items-start gap-4 sm:gap-5 rounded-2xl px-6 py-5 
-          transition-all duration-300 backdrop-blur-sm
+          flex-1 flex items-start gap-4 sm:gap-5 rounded-2xl px-6 py-5 border
+          /* PERBAIKAN 3: Hapus 'transition-all' dan ganti ke 'transition-colors' agar tidak menabrak Framer Motion */
+          transition-colors duration-200 backdrop-blur-sm
           ${
             isCurrent
-              ? "bg-white border border-[#b8892a]/50 shadow-[0_8px_30px_rgba(184,137,42,0.15)]"
-              : "bg-white/80 border border-[#EDE4D8] shadow-sm hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] hover:bg-white"
+              ? "bg-white border-[#b8892a]/50 shadow-[0_4px_20px_rgba(184,137,42,0.1)]"
+              : "bg-white/80 border border-[#EDE4D8] shadow-xs hover:bg-white"
           }
         `}
       >
         {/* Emoji Icon Container */}
         <div
-          className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 ${
+          className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-2xl transition-transform duration-300 group-hover:scale-105 ${
             isCurrent ? "bg-[#b8892a]/10" : "bg-[#F5ECD8]"
           }`}
         >

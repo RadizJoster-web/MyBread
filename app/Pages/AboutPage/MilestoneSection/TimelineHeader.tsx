@@ -15,17 +15,14 @@ export default function TimelineHeader() {
       className="flex flex-col items-center gap-4 text-center"
     >
       {/* Badge */}
-      <div className="inline-flex items-center gap-2 bg-[#EDE4D8]/80 border border-[#C9A87C]/30 px-5 py-2 rounded-full backdrop-blur-md shadow-sm">
-        <FiCalendar className="text-[#7a6a55] text-sm shrink-0" />
-        <span className="text-[10px] font-sans font-bold tracking-[0.2em] text-[#7a6a55] uppercase">
-          Our Journey
-        </span>
-      </div>
+      <span className="text-[10px] sm:text-xs font-sans font-bold tracking-widest text-[#7A6A55] uppercase">
+        Our Story
+      </span>
 
       <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-[#2a1a08] tracking-tight leading-tight">
-        La Farine Milestones
+        My Bread Milestones
       </h2>
-      <p className="font-sans text-sm text-[#7a6a55] font-light max-w-md">
+      <p className="font-sans text-sm text-[#7a6a55]  max-w-md">
         Every step is a beautiful story we continue to write together with our
         community.
       </p>

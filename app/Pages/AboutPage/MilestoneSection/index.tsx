@@ -31,7 +31,7 @@ export default function MilestoneSection() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 1.5, delay: 0.2, ease }}
             style={{ transformOrigin: "top" }}
-            className="absolute left-[72px] sm:left-[89px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#E0D4C0] via-[#C9A87C] to-transparent rounded-full"
+            className="absolute left-18 sm:left-22.25 top-4 bottom-4 w-0.5 bg-linear-to-b from-[#E0D4C0] via-[#C9A87C] to-transparent rounded-full"
           />
 
           {/* Render Timeline Items */}
