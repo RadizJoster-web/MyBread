@@ -52,7 +52,7 @@ export default function AboutHeroContent() {
       {/* ── Description ── */}
       <motion.p
         {...fadeUp(0.34)}
-        className="font-sans text-sm sm:text-[0.9375rem] text-muted-cocoa max-w-130 leading-[1.8] font-light"
+        className="font-sans text-sm sm:text-[0.9375rem] text-muted-cocoa max-w-130 leading-[1.8] "
       >
         More than just a bakery, we are a dedication to the art of artisan
         bread that warms hearts and brings people together.

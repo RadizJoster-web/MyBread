@@ -3,7 +3,7 @@
 import HistoryVisual from "./HistoryVisual";
 import HistoryContent from "./HistoryContent";
 
-export default function OurHistory() {
+export default function OurHistorySection() {
   return (
     <section id="our-history" className="relative w-full bg-[#FAF6F0] py-16 sm:py-24 lg:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

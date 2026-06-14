@@ -26,9 +26,9 @@ export default function HistoryContent() {
       </h2>
 
       {/* Narasi Cerita Sejarah Toko */}
-      <div className="mt-8 space-y-5 text-sm sm:text-base leading-relaxed text-[#7A6A55] font-light">
+      <div className="mt-8 space-y-5 text-sm sm:text-base leading-relaxed text-[#7A6A55] ">
         <p>
-          La Farine began in 2012 in a small kitchen located in Kemang, South
+          My Bread began in 2012 in a small kitchen located in Kemang, South
           Jakarta. It started with the dream of Chef Reza Mahendra, a Le Cordon
           Bleu Paris graduate, to bring authentic European bakery craftsmanship
           to Indonesia.
@@ -36,13 +36,13 @@ export default function HistoryContent() {
 
         <p>
           With only one oven, three team members, and a strong commitment to
-          quality, La Farine has grown into one of the most beloved artisan
+          quality, My Bread has grown into one of the most beloved artisan
           bakeries in the region, serving thousands of customers every day.
         </p>
 
         <p>
           The name{" "}
-          <span className="font-medium text-[#2A1A08]">"La Farine"</span>,
+          <span className="font-medium text-[#2A1A08]">"My Bread"</span>,
           French for flour, reflects our belief that simple ingredients can be
           transformed into something memorable through skill, patience, and
           passion.
