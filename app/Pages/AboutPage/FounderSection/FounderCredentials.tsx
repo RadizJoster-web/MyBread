@@ -15,8 +15,10 @@ export default function FounderCredentials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease }}
-          whileHover={{ x: 6, scale: 1.01 }}
-          className="flex items-center gap-5 bg-white/60 hover:bg-white border border-[#EDE4D8] rounded-2xl px-5 py-4 shadow-sm hover:shadow-md transition-colors duration-300 cursor-default group"
+          whileHover={{
+            boxShadow: "0 10px 25px -5px rgba(74,53,37,0.08)",
+          }}
+          className="flex items-center gap-5 bg-white/60 hover:bg-white hover:scale-103 border border-[#EDE4D8] rounded-2xl px-5 py-4 shadow-xs transition-all duration-300 cursor-default group"
         >
           {/* Icon Box */}
           <div className="shrink-0 w-11 h-11 rounded-xl bg-[#F5ECD8] flex items-center justify-center group-hover:bg-[#4a3525] transition-colors duration-300">

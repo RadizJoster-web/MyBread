@@ -13,9 +13,7 @@ export default function FounderSection() {
           <FounderCredentials />
         </div>
 
-        <div className="shrink-0 w-full lg:w-auto flex justify-center">
-          <FounderPhotoCard />
-        </div>
+        <FounderPhotoCard />
       </div>
     </section>
   );
