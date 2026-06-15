@@ -15,14 +15,14 @@ export default function TimelineHeader() {
       className="flex flex-col items-center gap-4 text-center"
     >
       {/* Badge */}
-      <span className="text-[10px] sm:text-xs font-sans font-bold tracking-widest text-[#7A6A55] uppercase">
+      <span className="text-[10px] sm:text-xs font-sans font-bold tracking-widest text-muted-cocoa uppercase">
         Our Story
       </span>
 
       <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-[#2a1a08] tracking-tight leading-tight">
         My Bread Milestones
       </h2>
-      <p className="font-sans text-sm text-[#7a6a55]  max-w-md">
+      <p className="font-sans text-sm text-muted-cocoa  max-w-md">
         Every step is a beautiful story we continue to write together with our
         community.
       </p>

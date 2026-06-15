@@ -15,7 +15,7 @@ export default function FounderBio() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease }}
       >
-        <span className="text-[10px]  font-bold tracking-[0.2em] text-light uppercase">
+        <span className="text-[10px]  font-bold tracking-[0.2em] text-muted-cocoa uppercase">
           {FOUNDER_INFO.role}
         </span>
       </motion.div>
@@ -45,7 +45,7 @@ export default function FounderBio() {
         {FOUNDER_INFO.paragraphs.map((text, idx) => (
           <p
             key={idx}
-            className=" text-sm sm:text-base text-light leading-relaxed"
+            className=" text-sm sm:text-base text-muted-cocoa leading-relaxed"
           >
             {text}
           </p>

@@ -2,7 +2,9 @@ import AboutHeroSection from "./AboutHeroSection";
 import OurHistorySection from "./OurHistorySection";
 import VisionMissionSection from "./VisionMissionSection";
 import MilestoneSection from "./MilestoneSection";
+import AchievementSection from "./AchievementSection";
 import FounderSection from "./FounderSection";
+import FaqSection from "./FaqSection";
 
 export default function AboutPage() {
   return (
@@ -11,7 +13,9 @@ export default function AboutPage() {
       <OurHistorySection />
       <VisionMissionSection />
       <MilestoneSection />
+      <AchievementSection />
       <FounderSection />
+      <FaqSection />
     </div>
   );
 }
