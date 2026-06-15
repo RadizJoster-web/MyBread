@@ -3,22 +3,14 @@
 import FooterBrand from "./FooterBrand";
 import FooterLinks from "./FooterLinks";
 import FooterContact from "./FooterContact";
-
-const pagesList = [
-  { label: "Home", href: "#" },
-  { label: "About us", href: "#" },
-  { label: "Shop", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "Contact", href: "#" },
-];
+import { pagesList } from "@/assets/pageList";
 
 const produkLinks = [
-  { label: "Pastry & Croissant", href: "#" },
-  { label: "Roti Artisan", href: "#" },
-  { label: "Kue & Cake", href: "#" },
-  { label: "Hampers & Gift", href: "#" },
-  { label: "Minuman", href: "#" },
-  { label: "Pre-Order Cake", href: "#" },
+  { label: "Pastry & Croissant", href: "/shop" },
+  { label: "Roti Artisan", href: "/shop" },
+  { label: "Cake", href: "/shop" },
+  { label: "Drink", href: "/shop" },
+  { label: "Custom Cake", href: "/shop" },
 ];
 
 const legalLinks = [

@@ -17,7 +17,7 @@ export default function ProductGrid({ products, viewMode }: ProductGridProps) {
         animate={{ opacity: 1 }}
         className="flex flex-col items-center justify-center py-24 gap-3"
       >
-        <span className="text-5xl">🔍</span>
+        <span className="text-5xl">⚠️</span>
         <p
           className="text-base italic"
           style={{ color: "#7a6a53", fontFamily: "'Lora', Georgia, serif" }}

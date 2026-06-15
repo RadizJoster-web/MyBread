@@ -5,8 +5,7 @@ import PopularMenuSection from "./PopularMenuSections";
 import WhyChooseUsSection from "./WhyChooseUsSection";
 import StatsSection from "./StatsSection";
 import TestimonialsSection from "./TestimonialsSection";
-import ContactSection from "./ContactSection";
-import LocationSection from "./LocationSection"
+import LocationSection from "./LocationSection";
 
 export default function HomePage() {
   return (
@@ -18,7 +17,6 @@ export default function HomePage() {
       <WhyChooseUsSection />
       <StatsSection />
       <TestimonialsSection />
-      <ContactSection />
       <LocationSection />
     </div>
   );

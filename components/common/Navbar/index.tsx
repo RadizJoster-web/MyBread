@@ -119,13 +119,12 @@ export default function Navbar() {
 
         {/* AREA KANAN: TOMBOL PROFILE + WIDGET DROPDOWN */}
         <div className="flex items-center gap-4">
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+          <Link
+            href={"/shop"}
             className="hidden md:flex items-center gap-1 bg-muted-cocoa text-light py-2 px-6 rounded-full font-medium hover:bg-dark-chocolate transition-all duration-300 cursor-pointer"
           >
             Order Now
-          </motion.button>
+          </Link>
 
           <button
             className="w-10 h-10 rounded-xl bg-primary/20 hover:bg-muted-cocoa flex items-center justify-center cursor-pointer text-primary hover:scale-105 active:scale-95 transition-all duration-300"

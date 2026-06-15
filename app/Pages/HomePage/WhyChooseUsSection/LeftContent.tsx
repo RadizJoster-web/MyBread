@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { GiWheat, GiCoffeeCup } from "react-icons/gi";
 import { MdOutlineAvTimer } from "react-icons/md";
@@ -94,18 +95,25 @@ export default function LeftContent() {
         ))}
       </div>
 
-      <motion.button
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.8 }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-fit bg-primary hover:bg-dark-chocolate text-white font-sans font-semibold py-3.5 px-8 rounded-full flex items-center gap-2 transition-all duration-300 shadow-md cursor-pointer text-sm"
-      >
-        <span>Explore Our Space</span>
-        <FiArrowRight className="text-base" />
-      </motion.button>
+      <a href="#location">
+        <motion.button
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 25,
+            delay: 0.2 + 4 * 0.08,
+          }}
+          whileHover={{ scale: 1.02, y: -2 }}
+          whileTap={{ scale: 0.98 }}
+          className="w-fit bg-primary hover:bg-dark-chocolate text-white font-sans font-semibold py-3.5 px-8 rounded-full flex items-center gap-2 transition-colors duration-200 shadow-md cursor-pointer text-sm"
+        >
+          <span>Explore Our Space</span>
+          <FiArrowRight className="text-base" />
+        </motion.button>
+      </a>
     </div>
   );
 }

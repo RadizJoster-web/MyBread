@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { IoArrowForward } from "react-icons/io5";
 import { motion } from "framer-motion";
 
@@ -65,23 +66,27 @@ export default function LeftContent() {
         className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 mt-4 md:mt-6 w-full sm:w-auto"
       >
         {/* Button Shop (Primary) */}
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="flex items-center justify-center gap-2 bg-primary text-white font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:bg-dark-chocolate transition-all duration-300 cursor-pointer group"
-        >
-          <span>Shop Our Menu</span>
-        </motion.button>
+        <Link href="/shop">
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center justify-center gap-2 bg-primary text-white font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:bg-dark-chocolate transition-all duration-300 cursor-pointer group"
+          >
+            <span>Try to Bite</span>
+          </motion.button>
+        </Link>
 
         {/* Button About (Secondary) */}
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="flex items-center justify-center gap-2 bg-transparent hover:bg-primary/5 text-dark-chocolate hover:text-primary border border-dark-chocolate/20 hover:border-primary/30 font-semibold px-8 py-3.5 rounded-full transition-all duration-300 group cursor-pointer"
-        >
-          <span>Our Story</span>
-          <IoArrowForward className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-        </motion.button>
+        <Link href="/about">
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center justify-center gap-2 bg-transparent hover:bg-primary/5 text-dark-chocolate hover:text-primary border border-dark-chocolate/20 hover:border-primary/30 font-semibold px-8 py-3.5 rounded-full transition-all duration-300 group cursor-pointer"
+          >
+            <span>Our Story</span>
+            <IoArrowForward className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </motion.button>
+        </Link>
       </motion.div>
     </div>
   );
