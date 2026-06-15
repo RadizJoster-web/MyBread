@@ -9,16 +9,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function MilestoneSection() {
   return (
-    <section className="relative w-full py-24 px-6 bg-[#FAF6F0] overflow-hidden">
-      {/* Subtle top gradient background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 0%, #F5ECD8 0%, transparent 70%)",
-        }}
-      />
-
+    <section className="relative w-full py-24 px-6 overflow-hidden">
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-14">
         <TimelineHeader />
 
@@ -31,7 +22,7 @@ export default function MilestoneSection() {
             viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 1.5, delay: 0.2, ease }}
             style={{ transformOrigin: "top" }}
-            className="absolute left-18 sm:left-22.25 top-4 bottom-4 w-0.5 bg-linear-to-b from-[#E0D4C0] via-[#C9A87C] to-transparent rounded-full"
+            className="absolute left-18 sm:left-22.25 top-4 bottom-4 w-0.5 rounded-full"
           />
 
           {/* Render Timeline Items */}

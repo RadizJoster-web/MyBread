@@ -31,7 +31,7 @@ export default function OrderedPlatformSection() {
   return (
     <section
       id="ordered-platform"
-      className="w-full py-14 bg-white border-y border-[#EFEAE2] overflow-hidden"
+      className="w-full py-14 bg-dark-chocolate border-y border-[#EFEAE2] overflow-hidden"
     >
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16">
         <motion.header
@@ -44,10 +44,10 @@ export default function OrderedPlatformSection() {
           }}
           className="w-full text-center mb-12"
         >
-          <p className="text-center font-sans text-xs font-semibold tracking-widest text-muted-cocoa uppercase mb-3">
+          <p className="text-center font-sans text-xs font-semibold tracking-widest text-light uppercase mb-3">
             Partner Delivery
           </p>
-          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-bakeryText mb-10 text-center tracking-tight">
+          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-light mb-10 text-center tracking-tight">
             Available on your favorite platforms
           </h2>
         </motion.header>
@@ -81,7 +81,7 @@ export default function OrderedPlatformSection() {
                 </div>
 
                 <div className="flex flex-col justify-center min-w-0">
-                  <span className="font-sans font-medium text-lg text-muted-cocoa group-hover:text-bakeryText transition-colors duration-300 tracking-wide truncate">
+                  <span className="font-sans font-medium text-lg text-muted-cocoa group-hover:text-light transition-colors duration-300 tracking-wide truncate">
                     {platform.name}
                   </span>
 
