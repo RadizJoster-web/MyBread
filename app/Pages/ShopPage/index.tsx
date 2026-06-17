@@ -7,10 +7,10 @@ import FilterSidebar from "./products/FilterSidebar";
 import ProductToolbar from "./products/ProductToolbar";
 import ProductGrid from "@/components/ui/ProductGrid";
 import PromoBar from "./products/PromoBar";
+import Pagination from "@/components/ui/Pagination"; // Pastikan komponen ini sudah dibuat terpisah
 import { useProduct } from "@/hooks/useProduct";
 import { SORT_OPTIONS } from "@/assets/data/productData/productData";
 import type { ProductCategory } from "@/type/productDataType";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const MAX_PRICE = 150000;
 
@@ -18,19 +18,25 @@ export default function ShopPage() {
   const { dataProducts, error, loading, fetchProduct } = useProduct();
 
   const [activeCategory, setActiveCategory] = useState<ProductCategory>("All");
-  const [priceRange, setPriceRange] = useState<[number, number]>([
-    0,
-    MAX_PRICE,
-  ]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, MAX_PRICE]);
   const [minRating, setMinRating] = useState(0);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState(SORT_OPTIONS[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterOpen, setFilterOpen] = useState(false);
 
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const productPerPage = 6;
+
   useEffect(() => {
     fetchProduct();
   }, []);
+
+  // Reset ke halaman 1 setiap kali filter/search berubah
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, priceRange, minRating, searchQuery, sortBy]);
 
   const filtered = useMemo(() => {
     let result = [...dataProducts];
@@ -70,14 +76,7 @@ export default function ShopPage() {
     }
 
     return result;
-  }, [
-    dataProducts,
-    activeCategory,
-    priceRange,
-    minRating,
-    searchQuery,
-    sortBy,
-  ]);
+  }, [dataProducts, activeCategory, priceRange, minRating, searchQuery, sortBy]);
 
   const handleReset = () => {
     setActiveCategory("All");
@@ -87,33 +86,14 @@ export default function ShopPage() {
     setSortBy(SORT_OPTIONS[0]);
   };
 
-  // Pagination Fitur
-  const [currentPage, setCurrentPage] = useState(1);
-  const productPerPage = 6;
-
+  // Kalkulasi Slice untuk Pagination
   const indexLastProduct = currentPage * productPerPage;
   const indexFirstProduct = indexLastProduct - productPerPage;
-
   const currentProducts = filtered.slice(indexFirstProduct, indexLastProduct);
   const totalPages = Math.ceil(filtered.length / productPerPage);
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
   return (
-    <main
-      className="min-h-screen w-full"
-      style={{ background: "var(--warm-gradient)" }}
-    >
+    <main className="min-h-screen w-full" style={{ background: "var(--warm-gradient)" }}>
       <div className="max-w-screen-xl mx-auto px-6 md:px-10 py-10 mt-20">
         <ShopHeader
           totalVisible={filtered.length}
@@ -121,12 +101,11 @@ export default function ShopPage() {
           onSearchChange={setSearchQuery}
         />
 
-        <div
-          className="h-px mb-8"
-          style={{ background: "rgba(212,163,115,0.2)" }}
-        />
+        <div className="h-px mb-8" style={{ background: "rgba(212,163,115,0.2)" }} />
 
         <div className="relative flex gap-7 items-start">
+          
+          {/* ── BAGIAN FORM FILTER SIDEBAR (DIKEMBALIKAN UTUH) ── */}
           <AnimatePresence>
             {(filterOpen || true) && (
               <>
@@ -146,6 +125,7 @@ export default function ShopPage() {
                   />
                 )}
 
+                {/* Sidebar Mobile */}
                 <motion.div
                   key="sidebar"
                   initial={{ x: "-100%" }}
@@ -169,8 +149,8 @@ export default function ShopPage() {
                   </div>
                 </motion.div>
 
-                {/* Desktop sidebar — tidak berubah */}
-                <div className="hidden md:block w-64 lg:w-72 shrink-0 sticky top-8">
+                {/* Sidebar Desktop */}
+                <div className="hidden md:block w-64 lg:w-72 shrink-0 sticky top-8 z-10">
                   <FilterSidebar
                     activeCategory={activeCategory}
                     onCategoryChange={setActiveCategory}
@@ -184,6 +164,7 @@ export default function ShopPage() {
               </>
             )}
           </AnimatePresence>
+          {/* ── AKHIR BAGIAN FORM FILTER SIDEBAR ── */}
 
           <div className="flex-1 min-w-0">
             <ProductToolbar
@@ -197,100 +178,41 @@ export default function ShopPage() {
             <PromoBar />
 
             {loading && (
-              <div
-                className="flex justify-center py-24 text-sm"
-                style={{ color: "#7a6a53" }}
-              >
+              <div className="flex justify-center py-24 text-sm" style={{ color: "#7a6a53" }}>
                 Loading Products...
               </div>
             )}
 
             {error && !loading && (
-              <div
-                className="flex flex-col items-center py-24 gap-2 text-sm"
-                style={{ color: "#7a6a53" }}
-              >
+              <div className="flex flex-col items-center py-24 gap-2 text-sm" style={{ color: "#7a6a53" }}>
                 <span className="text-4xl">⚠️</span>
                 {error}
               </div>
             )}
 
+            {/* Grid Produk dengan Animasi Transisi Halaman */}
             {!loading && !error && (
-              <ProductGrid products={currentProducts} viewMode={viewMode} />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentPage + activeCategory + sortBy}
+                  initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                >
+                  <ProductGrid products={currentProducts} viewMode={viewMode} />
+                </motion.div>
+              </AnimatePresence>
             )}
 
-            {/* Page indikator products */}
-            <div className="w-full max-w-5xl flex items-center justify-center gap-6 mt-12 font-inter select-none">
-              {/* ── TOMBOL PREVIOUS ── */}
-              <motion.button
-                whileHover={currentPage > 1 ? { scale: 1.05, x: -2 } : {}}
-                whileTap={currentPage > 1 ? { scale: 0.95 } : {}}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                onClick={handlePrevPage}
-                disabled={currentPage === 1}
-                className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors duration-200 outline-none
-          ${
-            currentPage === 1
-              ? "border-[#EDE4D8] text-muted-cocoa/30 bg-transparent cursor-not-allowed"
-              : "border-[#EDE4D8] bg-white text-dark-chocolate hover:border-primary hover:text-primary cursor-pointer shadow-xs"
-          }
-        `}
-              >
-                <FiChevronLeft size={18} />
-              </motion.button>
-
-              {/* ── DAFTAR ANGKA HALAMAN ── */}
-              <ul className="flex items-center gap-2 flex-wrap">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                  (page) => {
-                    const isActive = page === currentPage;
-                    return (
-                      <li key={page}>
-                        <motion.button
-                          whileHover={{ scale: 1.05, y: -2 }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 25,
-                          }}
-                          onClick={() => setCurrentPage(page)}
-                          className={`px-4 py-2 text-sm font-bold rounded-xl border transition-all duration-200 cursor-pointer outline-none
-                  ${
-                    isActive
-                      ? "bg-primary border-primary text-light shadow-md shadow-primary/20"
-                      : "bg-white/80 border-[#EDE4D8] text-muted-cocoa hover:bg-white hover:border-primary hover:text-primary shadow-xs"
-                  }
-                `}
-                        >
-                          {page}
-                        </motion.button>
-                      </li>
-                    );
-                  },
-                )}
-              </ul>
-
-              {/* ── TOMBOL NEXT ── */}
-              <motion.button
-                whileHover={
-                  currentPage < totalPages ? { scale: 1.05, x: 2 } : {}
-                }
-                whileTap={currentPage < totalPages ? { scale: 0.95 } : {}}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-                className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors duration-200 outline-none
-          ${
-            currentPage === totalPages
-              ? "border-[#EDE4D8] text-muted-cocoa/30 bg-transparent cursor-not-allowed"
-              : "border-[#EDE4D8] bg-white text-dark-chocolate hover:border-primary hover:text-primary cursor-pointer shadow-xs"
-          }
-        `}
-              >
-                <FiChevronRight size={18} />
-              </motion.button>
-            </div>
+            {/* Komponen Pagination Modular */}
+            {!loading && !error && filtered.length > 0 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
           </div>
         </div>
       </div>
