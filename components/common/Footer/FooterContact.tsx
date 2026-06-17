@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FiMapPin, FiPhone, FiMail, FiClock } from "react-icons/fi";
+import { companyData } from "@/assets/data/companyData";
 
 export default function FooterContact() {
   return (
@@ -24,9 +25,7 @@ export default function FooterContact() {
           className="flex items-start gap-3"
         >
           <FiMapPin className="text-[#E5C299] text-base shrink-0 mt-0.5" />
-          <span className="leading-relaxed">
-            Jl. Kemang Raya No. 88, Kebayoran Baru, Jakarta Selatan 12730
-          </span>
+          <span className="leading-relaxed">{companyData.address}</span>
         </motion.li>
 
         {/* Phones */}
@@ -38,8 +37,8 @@ export default function FooterContact() {
         >
           <FiPhone className="text-[#E5C299] text-base shrink-0 mt-0.5" />
           <div className="flex flex-col gap-0.5">
-            <span>+62 812-3456-7890</span>
-            <span>+62 21-7890-1234</span>
+            <span>{companyData.phoneNumber}</span>
+            <span>{companyData.phoneNumber2}</span>
           </div>
         </motion.li>
 
@@ -53,16 +52,16 @@ export default function FooterContact() {
           <FiMail className="text-[#E5C299] text-base shrink-0 mt-0.5" />
           <div className="flex flex-col gap-0.5">
             <a
-              href="mailto:hello@lafarine.id"
+              href={`mailto:${companyData.email1}`}
               className="hover:text-[#E5C299] transition-colors"
             >
-              hello@lafarine.id
+              {companyData.email1}
             </a>
             <a
-              href="mailto:order@lafarine.id"
+              href={`mailto:${companyData.email2}`}
               className="hover:text-[#E5C299] transition-colors"
             >
-              order@lafarine.id
+              {companyData.email2}
             </a>
           </div>
         </motion.li>
@@ -76,8 +75,8 @@ export default function FooterContact() {
         >
           <FiClock className="text-[#E5C299] text-base shrink-0 mt-0.5" />
           <div className="flex flex-col gap-0.5">
-            <span>Every Day: 07:00 – 21:00</span>
-            <span>Weekend: 06:00 – 22:00</span>
+            <span>{companyData.timeOperation.dayNormal}</span>
+            <span>{companyData.timeOperation.dayWeekend}</span>
           </div>
         </motion.li>
       </motion.ul>

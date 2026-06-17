@@ -10,6 +10,8 @@ interface ProductGridProps {
 }
 
 export default function ProductGrid({ products, viewMode }: ProductGridProps) {
+  // console.log(products);
+
   if (products.length === 0) {
     return (
       <motion.div
@@ -22,7 +24,7 @@ export default function ProductGrid({ products, viewMode }: ProductGridProps) {
           className="text-base italic"
           style={{ color: "#7a6a53", fontFamily: "'Lora', Georgia, serif" }}
         >
-          Nothing Matching Product 
+          Nothing Matching Product
         </p>
       </motion.div>
     );
