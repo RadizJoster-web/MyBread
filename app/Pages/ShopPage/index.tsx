@@ -18,7 +18,10 @@ export default function ShopPage() {
   const { dataProducts, error, loading, fetchProduct } = useProduct();
 
   const [activeCategory, setActiveCategory] = useState<ProductCategory>("All");
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, MAX_PRICE]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([
+    0,
+    MAX_PRICE,
+  ]);
   const [minRating, setMinRating] = useState(0);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState(SORT_OPTIONS[0]);
@@ -76,7 +79,14 @@ export default function ShopPage() {
     }
 
     return result;
-  }, [dataProducts, activeCategory, priceRange, minRating, searchQuery, sortBy]);
+  }, [
+    dataProducts,
+    activeCategory,
+    priceRange,
+    minRating,
+    searchQuery,
+    sortBy,
+  ]);
 
   const handleReset = () => {
     setActiveCategory("All");
@@ -93,7 +103,10 @@ export default function ShopPage() {
   const totalPages = Math.ceil(filtered.length / productPerPage);
 
   return (
-    <main className="min-h-screen w-full" style={{ background: "var(--warm-gradient)" }}>
+    <main
+      className="min-h-screen w-full"
+      style={{ background: "var(--warm-gradient)" }}
+    >
       <div className="max-w-screen-xl mx-auto px-6 md:px-10 py-10 mt-20">
         <ShopHeader
           totalVisible={filtered.length}
@@ -101,10 +114,12 @@ export default function ShopPage() {
           onSearchChange={setSearchQuery}
         />
 
-        <div className="h-px mb-8" style={{ background: "rgba(212,163,115,0.2)" }} />
+        <div
+          className="h-px mb-8"
+          style={{ background: "rgba(212,163,115,0.2)" }}
+        />
 
         <div className="relative flex gap-7 items-start">
-          
           {/* ── BAGIAN FORM FILTER SIDEBAR (DIKEMBALIKAN UTUH) ── */}
           <AnimatePresence>
             {(filterOpen || true) && (
@@ -178,13 +193,19 @@ export default function ShopPage() {
             <PromoBar />
 
             {loading && (
-              <div className="flex justify-center py-24 text-sm" style={{ color: "#7a6a53" }}>
+              <div
+                className="flex justify-center py-24 text-sm"
+                style={{ color: "#7a6a53" }}
+              >
                 Loading Products...
               </div>
             )}
 
             {error && !loading && (
-              <div className="flex flex-col items-center py-24 gap-2 text-sm" style={{ color: "#7a6a53" }}>
+              <div
+                className="flex flex-col items-center py-24 gap-2 text-sm"
+                style={{ color: "#7a6a53" }}
+              >
                 <span className="text-4xl">⚠️</span>
                 {error}
               </div>

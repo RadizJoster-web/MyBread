@@ -3,16 +3,24 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import useCart from "@/hooks/useCart";
 
+import useCart from "@/hooks/useCart";
 import Cart from "@/components/ui/Cart";
 import { BsList, BsX } from "react-icons/bs";
 import { usePage } from "@/hooks/usePage";
 import { pagesList } from "@/assets/pageList";
 
 export default function Navbar() {
+  const {
+    cartOpen,
+    setCartOpen,
+    cartItems,
+    increaseQty,
+    decreaseQty,
+    removeFromCart,
+    clearCart,
+  } = useCart();
   const { selectedPage, setSelectedPage } = usePage();
-  const { cartOpen, setCartOpen, cartItems } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const headerRef = useRef<HTMLDivElement>(null);
@@ -156,7 +164,11 @@ export default function Navbar() {
       <Cart
         cartItems={cartItems}
         cartOpen={cartOpen}
-        onClose={() => setCartOpen(false)}
+        setCartOpen={setCartOpen}
+        increaseQty={increaseQty}
+        decreaseQty={decreaseQty}
+        removeFromCart={removeFromCart}
+        clearCart={clearCart}
       />
     </>
   );
