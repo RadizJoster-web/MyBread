@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import useCart from "@/hooks/useCart";
-import Cart from "@/components/ui/Cart";
+import CartCheckoutLayout from "@/components/ui/Cart";
 import { BsList, BsX } from "react-icons/bs";
 import { usePage } from "@/hooks/usePage";
 import { pagesList } from "@/assets/pageList";
@@ -161,7 +161,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <Cart
+      <CartCheckoutLayout
         cartItems={cartItems}
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
